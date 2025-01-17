@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <style>
+        body{
+            font-family: sans-serif;
+            background-color: #f4f4f4;
+        }
+    
+        h1{
+            color: #333;
+            text-align: center;
+
+        }
+        form{
+            max-width: 400px;
+            margin: auto;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+        button{
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;  
+            border: none;
+            border-radius: 3 px;
+            cursor:pointer;
+        }
+        p{
+            width: 100%;
+            padding:15px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+    
+    </style>
+</head>
+<body>
+    <h1>Register</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <button type="submit">Register</button>
+    </form>
+    
+</body>
+</html>

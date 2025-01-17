@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin dashboard</title>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <h2>Vendors</h2>
+    <ul>
+        {% for vendor in vendors %}
+        <li>{{vendor.company_name}}</li>
+        {% end for %}
+    </ul>
+    <h2>packages</h2>
+    <ul>
+    {% for package in packages %}
+    <li>
+        {{package.name}}-{% if package.approved%}Approved{% else %}Pending{% endif %}
+        <a href="{%url 'approved_packages' package_id %}">Approved</a>
+        <a href="{% url 'reject_package' package_id%}">Reject</a>
+    </li>
+    {% endfor %}
+    </ul>
+    
+    
+</body>
+</html>

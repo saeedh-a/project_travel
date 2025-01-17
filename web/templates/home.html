@@ -1,0 +1,237 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour Package Management</title>
+    <style>
+
+      body{
+           
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            
+            
+        }
+        .navebar{
+            background: rgb(14, 2, 126);
+            font-family:  Calibri;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+        .navediv{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo{
+            font-size: 35px;
+            font-weight: 600;
+            color: rgb(213, 210, 243);
+        }
+        li{
+            list-style: none;
+            display: inline-block;
+        }
+        li a {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            margin-right: 25px;
+        }
+        button{
+            background-color: black;
+            margin-left: 10px;
+            border-radius: 10px;
+            padding: 10px;
+            width: 90px;
+        }
+        button a{
+            color: white;
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .test{
+            text-align: center;
+        }
+        
+        .hello{
+
+            background-image: url("{% static 'images/background1.jpg' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            padding: 200px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-align: center;
+            
+        }
+        
+        
+        .about_us{
+            padding: 50px;
+            text-align: center;
+        }
+        .about_us{
+            text-align: center;
+            padding: 20px;
+            letter-spacing: 1px;
+            line-height: 30px;
+        }
+        
+        footer{
+            background-color:#635f5f;
+            padding: 20px;
+            text-align: center;
+        }
+        h2{
+            text-align: center;
+            margin-top: 20px;
+            color: #343a40;
+        }
+        ul{
+            list-style: none;
+            padding: 0;
+        }
+        .li{
+            background: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgb(0,0,0,0.1);
+        }
+        h3{
+            margin: 0 0 10px;
+            color: #007bff;
+        }
+        img{
+            display: block;
+            margin: 10px auto;
+            border-radius: 4px;
+        }
+        .p{
+            margin: 5px 0;
+        }
+        .btn{
+            display: inline-block;
+            margin: 5px 0;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .btn:hover{
+            background-color: #0056b3;
+        }
+        .sec:hover{
+            background-color: #565e64;
+        }
+        .sec{
+            background-attachment:#6c757d;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    
+    <header>
+        
+        <nav class="navebar">
+            <div class="navediv">
+               <div class="logo"> <a href="#">TripZen</a></div>
+            <ul>
+                <li><a href="home">Home</a></li>
+                <li><a href="package_list">Package</a></li>
+                <li><a href="{%url 'vendor_register'%}">vendor Register</a></li>
+                <li><a href="about">About</a></li>
+                <li><a href="my_bookings">My Bookings</a></li>
+                <button><a href="{% url 'user_register'%}">Register</a></button>
+                 <button><a href="{% url 'user_login'%}">Login</a></button>
+
+            
+    
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="hello">
+            <h1>Discover Your Next Adventure</h1>
+            <br>
+            <p>Explore the world with our amazing tour package.</p>
+        
+        </section>
+    
+        
+        <section class="about_us">
+                    <h2>About Us</h2>
+                    <p> welcome to TripZen.Your trusted partner in crafting memorable travel experiences.with years of expertise in tour packages management.we specialze i designing customized itineraries that cater to your unique preferences and interests.whether you're seeking a serene getway.an advanturous journey.or a cultural exploration. we have something special for every traveler</p>
+                    <p>Our mission is to make travel seamless and enjoyable by handling all the details for you. form accommodations and transportation to guided tours and exclusive activities.we take care of everything so you can focus on creating unfortable memories </p>
+                    <p>At TripZen. we prid ourselves on our commitment to quality ,transparency,and exceptional customer service.Our dedicated team of travel experts is passionate about exploring the world and sharing their knowledge to ensure every trip exceeds expectatons</p>
+                    <p>Let us transform your dream vacation into reality.Explore our diverse range of packages and discover the joy of stress_free travel with TripZen</p>
+                    
+        </section>
+
+    
+        <div>
+           <h2>Tour Packages</h2>
+           <a href="browse_packages">Browse Packages</a>
+        <ul>
+        {% for package in packages %}
+        <li class="li">
+        <h3> {{package.name}} </h3>
+        <p class="p">{{package.description}} </p>
+        <p class="p">destination:{{package.destination}} </p> 
+        <p class="p">price:Rs {{package.price}} </p>
+
+          {% if package.image %}
+        
+       <img style="height: 150px; width: 150px;" src="{{ package.image.url }}"  >
+          {% else %}
+          <p>No image available</p>
+          {% endif %}
+       <br>
+       <a href="{% url 'package_details' package.pk %}" class="btn">View Details</a>
+       <br>
+       <a href="{% url 'book_package' package.pk %}" class="btn">Book Now</a>
+
+
+       
+    
+    
+
+        </li>
+        {% endfor %}
+        </ul>
+    </div>
+        
+        
+
+    
+    </main>
+    
+    <footer>
+
+    </footer>
+    
+</body>
+</html>
+
+    </main>
+     
+
+    
+</body>
+</html>

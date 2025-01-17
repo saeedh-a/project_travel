@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour Packages</title>
+    <style>
+        body{
+           font-family: Arial, Helvetica, sans-serif; 
+           margin: 0;
+           padding: 0;
+           background-color: #f8f9fa;
+           color: #343a40;
+        }
+        a{
+            text-decoration: none;
+            color: #007bff;
+        }
+        a:hover{
+            counter-reset: #0056b3;
+        }
+        h2{
+            text-align: center;
+            margin-top: 20px;
+            color: #343a40;
+        }
+        ul{
+            list-style: none;
+            padding: 0;
+        }
+        li{
+            background: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgb(0,0,0,0.1);
+        }
+        h3{
+            margin: 0 0 10px;
+            color: #007bff;
+        }
+        img{
+            display: block;
+            margin: 10px auto;
+            border-radius: 4px;
+        }
+        p{
+            margin: 5px 0;
+        }
+        .btn{
+            display: inline-block;
+            margin: 5px 0;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .btn:hover{
+            background-color: #0056b3;
+        }
+        .sec:hover{
+            background-color: #565e64;
+        }
+        .sec{
+            background-attachment:#6c757d;
+        }
+        
+    </style>
+</head>
+<body>
+    
+     <a href="browse_packages" class="sec">Browse Packages</a>
+    <div>
+    <h2>Tour Packages</h2>
+    <ul>
+        {% for package in packages %}
+        <li>
+        <h3> {{package.name}} </h3>
+        <p>{{package.description}} </p>
+        <p>destination:{{package.destination}} </p> 
+        <p>price:Rs {{package.price}} </p>
+
+          {% if package.image %}
+        
+       <img style="height: 150px; width: 150px;" src="{{ package.image.url }}"  >
+          {% else %}
+          <p>No image available</p>
+          {% endif %}
+       <br>
+       <a href="{%url 'package_details' package.pk %}" class="btn">View Details</a>
+       <br>
+       <a href="{%url 'book_package' package.pk %}" class="btn">Book Now</a>
+        </li>
+     {% endfor %}
+    </ul>
+
+    </div>
+    
+</body>
+</html>

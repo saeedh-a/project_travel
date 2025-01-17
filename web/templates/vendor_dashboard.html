@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Dashboard</title>
+     <style>
+      body{
+        font-family: sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f0f0f0;
+      }
+      h1, h2, h3{
+        text-align: center;
+        margin-bottom:20px ;
+      }
+      table{
+        width: 100%;
+        border-collapse: collapse;
+        margin-top:20px ;
+      }
+      th,td{
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+      }
+      a{
+        text-decoration: none;
+        color:#007bff ;
+        margin-right: 10px;
+      }
+     </style>
+</head>
+<body>
+    <h1>Vendor dashboard</h1>
+    <h2>Welcome, {{vendor.company_name}} </h2>
+    <h3>Your Package</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>destination</th>
+                <th>Price</th>
+                <th>Approved</th>
+                <th>Image</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        
+           {% for package in Packages %}
+          <tr>
+            <td>{{package.name}}  </td>
+            <td> {{package.description}} </td>
+            <td>{{package.destination}} </td>
+            <td>Rs{{package.price}} </td>
+            <td>{{package.Approved}}</td>
+            <td>
+              <img src="{{package.image.url}}" alt="{{package.name}}" width="100" height="100">
+              
+            </td>
+            <td>
+            <a href="{% url 'edit_package' package.pk %}">Edit</a>
+            <a href="{% url 'delete_package' package.pk %}">Delete</a>
+            </td>
+          </tr>
+            {% endfor %}
+          
+        </tbody>
+    </table>
+
+      <a href="{% url 'add_packages'%}"> Add New Package</a>
+      <a href="{% url 'vendor_logout' %}"> Logout</a>
+    
+</body>
+</html>

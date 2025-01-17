@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My bookings</title>
+    <style>
+        body{
+            font-family: sans-serif;
+            margin: 20px;
+
+        }
+        h1{
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        ul{
+            list-style: none;
+            padding: 0;
+        }
+        li{
+            margin-bottom: 10px;
+        }
+        a{
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<h1>My Bookings</h1>
+<ul>
+    {%for booking in bookings %}
+    <li>{{booking.package.name}}
+       (Booked on{{booking.booking_date}})
+    </li>
+</ul>
+{%endfor%}
+<a href="{% url 'package_list' %}">back to packages</a>
+    
+</body>
+</html>

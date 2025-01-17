@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Tour Packages</title>
+</head>
+<body>
+    <h1>Browse Tour Packages</h1>
+    <h2>All Packages</h2>
+    <ul>
+        {% for package in all_packages%}
+        <li>
+            <h3>{{package.name}}</h3>
+            <p> Destination:{{package.destination}}</p>
+            <p>Price:Rs{{package.price}}</p>
+            <a href="{%url 'package_details' package.pk %}" class="btn">View Details</a>
+            <img style="height: 150px; width: 150px;" src="{{ package.image.url }}"  >
+
+
+        </li>
+        {% endfor%}
+    </ul>
+
+    <h2>Top Packages</h2>
+    <ul>
+        {% for package in top_packages%}
+        <li>
+            <h3>{{package.name}}</h3>
+            <p> Destination:{{package.destination}}</p>
+            <p>Price:Rs{{package.price}}</p>
+            <a href="{%url 'package_details' package.pk %}" class="btn">View Details</a>
+            <img style="height: 150px; width: 150px;" src="{{ package.image.url }}"  >
+
+
+        </li>
+        {% endfor%}
+    </ul>
+    
+    <h2>Budget Friendly packages</h2>
+    <ul>
+        {%for package in budget_friendly%}
+        <li>
+            <h3>{{package.name}}</h3>
+            <p> Destination:{{package.destination}}</p>
+            <p>Price:Rs{{package.price}}</p>
+            <a href="{%url 'package_details' package.pk %}" class="btn">View Details</a>
+            <img style="height: 150px; width: 150px;" src="{{ package.image.url }}"  >
+
+
+        </li>
+        {% endfor%}
+    </ul>
+
+</body>
+</html>
