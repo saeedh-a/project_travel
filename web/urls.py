@@ -3,7 +3,7 @@ from.import views as v
 
 urlpatterns=[
     path('', v.home, name='home'),
-     path('home/', v.home, name='home'),
+    path('home/', v.home, name='home'),
     path('about/', v.about, name='about'),
     path('book/<int:pk>/', v.book_package, name='book_package'),
     path('package_list/', v.package_list, name='package_list'),

@@ -107,6 +107,7 @@ def about(request):
 def contact(request):
     return render(request,'contact.html')
 
+@login_required(login_url='user_login')
 def book_package(request,pk):
     package=get_object_or_404(TourPackage,pk=pk)
     if request.method =='POST':

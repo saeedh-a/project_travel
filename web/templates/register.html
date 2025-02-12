@@ -37,16 +37,22 @@
             border: 1px solid #ccc;
             border-radius: 3px;
         }
+        a{
+            text-align: center;
+
+        }
+
+    
     
     </style>
 </head>
 <body>
-    <h1>Register</h1>
+    <h1> User Registeration</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p}}
         <button type="submit">Register</button>
     </form>
-    
+    <a href="{% url 'user_login' %}">Login</a>
 </body>
 </html>
