@@ -10,7 +10,7 @@ from django.contrib.auth.forms import AuthenticationForm , UserCreationForm
 
 # Create your views here.
 def home(request): 
-    packages= TourPackage.objects.all()
+    packages= TourPackage.objects.filter(approved=True)
     return render(request,'home.html',{"packages":packages})
 
 def vendor_register(request):
@@ -49,6 +49,8 @@ def add_packages(request):
         form = TourPackageForm()
     return render(request,'add_packages.html',{'form':form})
     
+
+
 
 def edit_package(request,pk): 
     vendor = get_object_or_404(Vendor, user=request.user)
@@ -130,13 +132,13 @@ def payment_view(request,pk):
 
 @login_required 
 def vendor_dashboard(request):
-    packages =TourPackage.objects.all()
+    packages =TourPackage.objects.filter(vendor_id=request.user)
     return render(request,'vendor_dashboard.html',{'packages':packages})
 
 
 
 def package_list(request):
-   packages= TourPackage.objects.all()
+   packages= TourPackage.objects.filter(approved= True)
    return render(request,'package_list.html',{'packages':packages})
 
 def package_details(request,pk):

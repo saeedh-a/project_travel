@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class TourPackage(models.Model):
+    vendor= models.ForeignKey( User,on_delete=models.CASCADE ,null=True, default=0)
     name= models.CharField(max_length=255 ,default=0 )
     description= models.TextField(default=0)
     destination= models.CharField(max_length=255, default=0)
@@ -18,14 +19,6 @@ class TourPackage(models.Model):
     available =models.BooleanField(default=True)
     expiry_date =models.DateField(help_text='Last date This package is available',null=True,blank=True, default=None)
 
-class Booking(models.Model):
-    user= models.ForeignKey(User,on_delete=models.CASCADE, null=True)
-    package= models.ForeignKey(TourPackage ,on_delete=models.CASCADE, null=True )
-    booking_date= models.DateField(auto_now_add=True)
-    number_of_people= models.PositiveIntegerField()
-    total_price = models.DecimalField(max_digits=10,decimal_places=2,null=True )    
-
-
 
 class Vendor(models.Model):
       id=models.AutoField(primary_key=True, default=0)
@@ -34,7 +27,18 @@ class Vendor(models.Model):
       email = models.EmailField(max_length=100 ,default=0)    
       contact_info = models.TextField(max_length=100 , default=0)    
 
-   
+
+
+
+
+
+class Booking(models.Model):
+    user= models.ForeignKey(User,on_delete=models.CASCADE, null=True)
+    package= models.ForeignKey(TourPackage ,on_delete=models.CASCADE, null=True )
+    booking_date= models.DateField(auto_now_add=True)
+    number_of_people= models.PositiveIntegerField()
+    total_price = models.DecimalField(max_digits=10,decimal_places=2,null=True )    
+
 
 class payment(models.Model):
     Booking= models.OneToOneField(Booking,on_delete=models.CASCADE ,default=0)

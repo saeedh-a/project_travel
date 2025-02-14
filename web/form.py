@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class TourPackageForm(forms.ModelForm):
    class Meta:
       model=   TourPackage
-      fields= ['name','description','destination','price','duration','image','available','expiry_date','is_top_package','is_budget_friendly']
+      fields= ['vendor','name','description','destination','price','duration','image','available','expiry_date','is_top_package','is_budget_friendly']
 
 class VendorRegistrationForm(UserCreationForm):
    email  = forms.EmailField(required=True, help_text="enter a valid Email address")
