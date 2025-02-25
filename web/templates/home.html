@@ -17,7 +17,7 @@
             
         }
         .navebar{
-            background: rgb(14, 2, 126);
+            background: rgb(29, 179, 248);
             font-family:  Calibri;
             padding-right: 15px;
             padding-left: 15px;
@@ -30,13 +30,14 @@
         .logo{
             font-size: 35px;
             font-weight: 600;
-            color: rgb(213, 210, 243);
+            color: rgb(210, 233, 243);
         }
         li{
             list-style: none;
             display: inline-block;
         }
         li a {
+            text-decoration: none;
             color: white;
             font-size: 18px;
             font-weight: bold;
@@ -149,17 +150,16 @@
     
     <header>
         
-        <nav class="navebar">
+        <nav class="navebar" style="position: fixed; width:99% ;">
             <div class="navediv">
-               <div class="logo"> <a href="#">TripZen</a></div>
+               <div class="logo" > <a href="#">TripZen</a></div>
             <ul>
-                <li><a href="home">Home</a></li>
                 <li><a href="package_list">Package</a></li>
                 <li><a href="{%url 'vendor_register'%}">vendor Register</a></li>
                 <li><a href="about">About</a></li>
                 <li><a href="my_bookings">My Bookings</a></li>
                 <button><a href="{% url 'user_register'%}">Register</a></button>
-                 <button><a href="{% url 'user_login'%}">Login</a></button>
+
 
             
     
